@@ -11,9 +11,8 @@ export default function Index() {
     <Canvas style={{ background: "#000000" }}>
       <Model />
 
-      <directionalLight intensity={2} position={[0, 2, 3]} />
-
-      <Environment preset="city" />
+      <directionalLight intensity={1} position={[0, 2, 3]} />
+      <Environment preset="night" />
     </Canvas>
   );
 }
