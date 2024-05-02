@@ -16,6 +16,25 @@
   }
 }
 
+#imageContainer {
+  filter: saturate(0);
+  transition: all ease 0.5s;
+}
+
+
+#imageContainer:hover {
+  filter: saturate(100%);
+}
+
+#imageContainer > * {
+  position: absolute;
+  inset: 0;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover;
+}
+
+
 body {
   color: rgb(var(--foreground-rgb));
   background: linear-gradient(
