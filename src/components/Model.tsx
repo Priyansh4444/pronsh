@@ -1,18 +1,18 @@
 // @ts-nocheck
 import React, { useRef } from "react";
 import { MeshTransmissionMaterial, useGLTF, Text } from "@react-three/drei";
-import { useFrame, useThree } from "@react-three/fiber";
+import { useFrame, useThree, useLoader } from "@react-three/fiber";
 import { useControls } from "leva";
-import { TTFLoader } from 'three/examples/jsm/loaders/TTFLoader.js';
-
-
+import { TextureLoader } from 'three/src/loaders/TextureLoader'
+import * as THREE from 'three'
 
 export default function Model() {
   const { nodes } = useGLTF("torrus.glb");
   const { viewport } = useThree();
+  const light  = useRef(null);
   const torus = useRef(null);
-
-  useFrame(() => {
+  const light_texture = useLoader(TextureLoader, 'light_line.png')
+  useFrame((  ) => {
     torus.current.rotation.z += 0.01;
     torus.current.rotation.x += 0.01;
   });
@@ -33,7 +33,7 @@ export default function Model() {
   return (
     <group scale={viewport.width / 3}>
       <Text
-      font="https://cdn.jsdelivr.net/fontsource/fonts/comfortaa@latest/latin-400-normal.ttf"
+        font="https://cdn.jsdelivr.net/fontsource/fonts/comfortaa@latest/latin-400-normal.ttf"
         position={[0, 0, -1]}
         fontSize={0.5}
         color="white"
@@ -46,6 +46,20 @@ export default function Model() {
       <mesh ref={torus} {...nodes.Torus002}>
         <MeshTransmissionMaterial {...materialProps} />
       </mesh>
+
+      {/* This is going to be our light! */}
+      <instancedMesh ref={light} args={[null, null, 1]} instanceMatrix-usage={THREE.DynamicDrawUsage}>
+        <planeGeometry />
+        <meshBasicMaterial
+          map={light_texture}
+          transparent
+          opacity={1}
+          blending={THREE.AdditiveBlending}
+          depthWrite={true}
+          toneMapped={true}
+        />
+      </instancedMesh>
+
     </group>
   );
 }

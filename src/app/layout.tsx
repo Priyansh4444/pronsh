@@ -1,9 +1,12 @@
 import type { Metadata } from "next";
-import { Comfortaa, Inter } from "next/font/google";
+import { Comfortaa } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 
-const inter = Comfortaa({ subsets: ["latin"] });
+const inter = Comfortaa({
+  subsets: ["latin"],
+  style: ['normal'],
+});
 
 export const metadata: Metadata = {
   title: "Create Next App",
