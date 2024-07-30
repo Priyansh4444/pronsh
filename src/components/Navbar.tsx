@@ -9,12 +9,19 @@ const navbarStyle = {
   WebkitBackdropFilter: "blur(10px)", // For Safari browser support
   borderBottom: "1px solid rgba(255, 255, 255, 0.03)", // Slight border for glossy effect
 };
-
+import { useScramble } from "use-scramble";
 
 export default function Navbar() {
   const [isVisible, setIsVisible] = useState(true);
+  const { ref, replay } = useScramble({
+    text: "Pronsh",
+    speed: 1,
+    tick: 1,
+    overflow: true,
+    scramble: 5,
+    range: [97, 122],
+  });
   const [lastScrollY, setLastScrollY] = useState(0);
-
   const handleScroll = () => {
     if (window.scrollY > lastScrollY && window.scrollY > 100) {
       // Scroll down and scrolled more than 100px
@@ -25,6 +32,7 @@ export default function Navbar() {
     }
     setLastScrollY(window.scrollY);
   };
+
 
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
@@ -42,7 +50,7 @@ export default function Navbar() {
       <div className="container mx-auto flex items-center justify-between">
         <Link className="flex items-center gap-2 text-lg font-semibold text-gray-50" href="https://github.com/Priyansh4444">
           <Image src="/pronsh.jpeg" width={40} height={40} className="rounded-full mx-5" alt="Profile Picture" />
-          <span>Pronsh</span>
+          <span ref={ref} onMouseOver={replay}></span>
         </Link>
         <nav className="hidden space-x-4 md:flex">
           <Link className="text-sm font-medium text-gray-600 hover:text-gray-50 duration-500" href="https://github.com/Priyansh4444">
