@@ -33,7 +33,7 @@ const AboutMe = () => {
       <Container>
         <div className="py-16 text-center overflow-hidden relative">
           <RetroGrid />
-          <div className="flex items-center justify-center">
+          <div className="container flex items-center justify-center">
             <svg width="0" height="0">
               <linearGradient id="blue-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
                 <stop stopColor="#ffd319" offset="0%" />
@@ -42,7 +42,7 @@ const AboutMe = () => {
               </linearGradient>
             </svg>
             <Zap className="mr-2 h-10 w-10 " style={{ stroke: "url(#blue-gradient)" }} />
-            <h2 className="text-3xl selection:bg-[#e76ec957] font-bold bg-gradient-to-b text-transparent from-[#ffd319] via-[#ff2975] to-[#8c1eff] bg-clip-text md:text-4xl">
+            <h2 className="text-2xl selection:bg-[#e76ec957] font-bold bg-gradient-to-b text-transparent from-[#ffd319] via-[#ff2975] to-[#8c1eff] bg-clip-text md:text-4xl">
               My Preferred Technologies
             </h2>
           </div>

@@ -81,7 +81,7 @@
   position: relative;
   display: inline-block;
   color: white;
-  opacity: 0.55;
+  /* opacity: 0.55; */
 }
 
 .glitch::before,
@@ -108,3 +108,47 @@
   animation: glitch 0.4s infinite;
   animation-delay: 0.15s;
 }
+
+.animated-cards::before {
+  @apply pointer-events-none absolute select-none rounded-lg opacity-0 transition-opacity duration-300 hover:opacity-100 z-[-1] content-[''] -inset-px;
+  background: radial-gradient(
+    400px circle at var(--x) var(--y),
+    rgb(255, 6, 106) 50%,
+    transparent 80%
+  );
+}
+
+.progress {
+  position: fixed;
+  left: 0;
+  right: 0;
+  height: 5px;
+  background: var(--accent);
+  bottom: 100px;
+}
+
+.parallax {
+  overflow: hidden;
+  letter-spacing: -2px;
+  line-height: 0.8;
+  margin: 0;
+  white-space: nowrap;
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.parallax .scroller {
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 64px;
+  display: flex;
+  white-space: nowrap;
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.parallax span {
+  display: block;
+  margin-right: 30px;
+}
+

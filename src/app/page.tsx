@@ -3,6 +3,7 @@ import React, { Suspense } from "react";
 import dynamic from "next/dynamic";
 import AboutMe from "@/components/AboutMe";
 import MyProjects from "@/components/MyProjects";
+import ParallaxText from "@/components/ParallaxText";
 
 const Scene = dynamic(() => import("@/components/Scene"), {
   ssr: false,
@@ -24,11 +25,17 @@ export default function Home() {
         <AboutMe />
       </div>
       <MyProjects />
+      <ParallaxText baseVelocity={-3}>Contact Me</ParallaxText>
+      <ParallaxText baseVelocity={3}>Contact Me</ParallaxText>
     </main>
   );
 }
+// pages/index.js
 
-// My Projects, Resume, Contact Me
+
+
+
+// My Projects, {Resume, Contact Me}
 // Blog coming soon
 // Sound Effect on hovering on buttons
 // Random Fact generator
