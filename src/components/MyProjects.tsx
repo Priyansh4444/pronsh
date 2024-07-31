@@ -2,7 +2,7 @@ import { MouseEvent } from 'react';
 import { motion, MotionStyle, MotionValue, useMotionTemplate, useMotionValue, useTransform } from 'framer-motion';
 import { Card, CardHeader, CardTitle, CardDescription, CardFooter } from './ui/card';
 import Link from "next/link";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import { Badge } from './ui/badge';
 import { HorizontalScroll } from './HorizontalScroll';
 import { SquareArrowOutUpRight } from "lucide-react";

@@ -1,7 +1,7 @@
 import React from 'react'
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import { LucideCloudLightning, Zap } from 'lucide-react';
 const AboutMe = () => {
   const getImageName = (path: string) => {

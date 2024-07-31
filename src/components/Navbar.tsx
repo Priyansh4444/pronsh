@@ -1,7 +1,7 @@
 "use client";
 import { GithubIcon, Linkedin, Mail } from "lucide-react"
 import Link from "next/link"
-import Image from "next/image"
+import Image from "next/legacy/image"
 import React, { useState, useEffect } from "react";
 const navbarStyle = {
   backdropFilter: "blur(20px)", // Blur effect for the glass-like effect
