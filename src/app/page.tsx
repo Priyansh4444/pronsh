@@ -3,7 +3,7 @@ import React, { Suspense } from "react";
 import dynamic from "next/dynamic";
 import AboutMe from "@/components/AboutMe";
 import MyProjects from "@/components/MyProjects";
-import ParallaxText from "@/components/ParallaxText";
+import { TextParallaxContentCollaborate } from "@/components/TextParallaxContent";
 
 const Scene = dynamic(() => import("@/components/Scene"), {
   ssr: false,
@@ -25,8 +25,7 @@ export default function Home() {
         <AboutMe />
       </div>
       <MyProjects />
-      <ParallaxText baseVelocity={-3}>Contact Me</ParallaxText>
-      <ParallaxText baseVelocity={3}>Contact Me</ParallaxText>
+      <TextParallaxContentCollaborate />
     </main>
   );
 }

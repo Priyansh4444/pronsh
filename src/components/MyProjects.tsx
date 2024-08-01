@@ -102,6 +102,7 @@ const ProjectCard = (project: Project) => {
               height={832}
               quality={100}
               src={project.image}
+              unoptimized
             />
           </div>
         </div>
