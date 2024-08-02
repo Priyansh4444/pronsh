@@ -150,7 +150,6 @@ function RetroGrid({ className }: { className?: string }) {
     </div>
   );
 }
-// Hello there I am Priyansh Shah, an aspiring Computer Science Student Passionate in Deep Learning and Rust
 
 const Container = ({ children }: { children: React.ReactNode }) => (
   <div className="relative mx-auto w-full rounded-lg border border-dashed px-4 border-zinc-800 sm:px-6 md:px-8">
@@ -176,15 +175,6 @@ const Ellipses = () => {
     </div>
   )
 }
-// Languages Worked with
-// Frameworks Worked with
-
-// sticky buttons
-//
-
-// Projects made
-
-// Resume
 
 
 

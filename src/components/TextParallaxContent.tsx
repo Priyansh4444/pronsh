@@ -1,6 +1,6 @@
 import React, { ReactElement, useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { Footer } from "./footer";
+import { Footer } from "./Footer";
 
 export const TextParallaxContentCollaborate = () => {
     return (

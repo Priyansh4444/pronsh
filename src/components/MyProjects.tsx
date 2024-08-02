@@ -90,8 +90,9 @@ const ProjectCard = (project: Project) => {
         } as WrapperStyle
       }
       onMouseMove={handleMouseMove}
+      key={project.title}
     >
-      <Card className="h-full group w-[80vw] lg:max-w-[40vw]" key={project.title}>
+      <Card className="h-full group w-[80vw] lg:max-w-[40vw]" >
         <div className="p-4">
           <div className="overflow-hidden rounded-lg">
             <Image
