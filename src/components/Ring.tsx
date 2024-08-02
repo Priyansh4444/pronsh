@@ -1,20 +1,17 @@
-import { useGLTF, MeshTransmissionMaterial, Text3D, useFBO, Environment, useEnvironment } from "@react-three/drei";
-import { createPortal, useFrame, useThree } from "@react-three/fiber";
-import { EffectComposer, Bloom } from "@react-three/postprocessing";
-import { useControls } from "leva";
-import { easing } from "maath";
+import { useGLTF, MeshTransmissionMaterial, Text3D, useEnvironment } from "@react-three/drei";
+import { useFrame, useThree } from "@react-three/fiber";
 import { useEffect, useMemo, useRef, useState, useTransition } from "react";
 import { Group, Mesh } from "three";
 import * as THREE from 'three'
 export function Ring() {
-    const materialProps = useControls({
-        thickness: { value: 0.2, min: 0, max: 10, step: 0.05 },
-        roughness: { value: 0, min: 0, max: 1, step: 0.1 },
-        transmission: { value: 1, min: 0, max: 1, step: 0.1 },
-        ior: { value: 1.2, min: 0, max: 3, step: 0.1 },
-        chromaticAberration: { value: 0.02, min: 0, max: 1 },
-        backside: { value: true },
-    });
+    const materialProps = {
+        thickness: 10,
+        roughness: 0,
+        transmission: 1,
+        ior: 4,
+        chromaticAberrations: 1,
+        backside: true,
+    }
     const values = {
         thicknes: 1.05,
         chromaticAbberations: 1,
@@ -88,7 +85,7 @@ export function Ring() {
 
     return (
         <group ref={groupRef} dispose={null} scale={10} position={[0, 0, -325.5]}>
-            <Text3D font={"/Comfortaa_Regular.json"} position={[-20, -10, 0]} scale={[8, 8.5, 5.0]} rotation={[Math.PI / 10.0, 0, 0]}>
+            <Text3D font={"/Comfortaa_Regular.json"} position={[-20,15, 0]} scale={[8, 8.5, 5.0]} rotation={[0, 0, 0]}>
                 <meshStandardMaterial metalness={2.2} color={"black"} />
                 Pronsh
             </Text3D>
