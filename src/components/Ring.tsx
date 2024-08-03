@@ -113,13 +113,13 @@ export function Ring() {
       <group scale={10}>
         <group ref={hourHandRef}>
           <mesh geometry={(nodes2.Plane004 as THREE.Mesh).geometry} scale={1.5}>
-            <meshBasicMaterial color={"#FFD700"} envMap={environment} />
+            <meshBasicMaterial color={"#000000"} envMap={environment} />
           </mesh>
           <mesh
             geometry={(nodes2.Plane004_1 as THREE.Mesh).geometry}
             scale={1.5}
           >
-            <meshBasicMaterial color={"#FFD700"} envMap={environment} />
+            <meshBasicMaterial color={"#000000"} envMap={environment} />
           </mesh>
         </group>
         <group ref={minuteHandRef}>
@@ -129,7 +129,7 @@ export function Ring() {
             geometry={(nodes3.Plane005 as THREE.Mesh).geometry}
             scale={1.9}
           >
-            <meshBasicMaterial color={"#FFD700"} envMap={environment} />
+            <meshBasicMaterial color={"#000000"} envMap={environment} />
           </mesh>
           <mesh
             castShadow
@@ -137,7 +137,7 @@ export function Ring() {
             geometry={(nodes3.Plane005_1 as THREE.Mesh).geometry}
             scale={1.9}
           >
-            <meshBasicMaterial color={"#FFD700"} envMap={environment} />
+            <meshBasicMaterial color={"#000000"} envMap={environment} />
           </mesh>
         </group>
         <group ref={secondHandRef}>
@@ -147,7 +147,7 @@ export function Ring() {
             geometry={(nodes4.Plane005 as THREE.Mesh).geometry}
             scale={2}
           >
-            <meshBasicMaterial color={"#FFD700"} envMap={environment} />
+            <meshBasicMaterial color={"#000000"} envMap={environment} />
           </mesh>
           <mesh
             castShadow
@@ -155,7 +155,7 @@ export function Ring() {
             geometry={(nodes4.Circle006 as THREE.Mesh).geometry}
             scale={2}
           >
-            <meshBasicMaterial color={"#FFD700"} envMap={environment} />
+            <meshBasicMaterial color={"#000000"} envMap={environment} />
           </mesh>
         </group>
       </group>

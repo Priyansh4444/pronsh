@@ -12,7 +12,7 @@ const navbarStyle = {
 import { useScramble } from "use-scramble";
 import Clock from "./Clock";
 
-export default function Navbar() {
+export default function Navbar({ isRainbow, setRainbow }: { isRainbow: boolean; setRainbow: React.Dispatch<React.SetStateAction<boolean>> }) {
   const [isVisible, setIsVisible] = useState(true);
   const { ref, replay } = useScramble({
     text: "Pronsh",
@@ -62,7 +62,7 @@ export default function Navbar() {
           <span ref={ref} onMouseOver={replay}></span>
         </Link>
         <nav className="hidden space-x-4 md:flex">
-          <Clock />
+          <Clock isRainbow={isRainbow} setRainbow={setRainbow}/>
           <Link
             className="text-sm font-medium text-gray-600 hover:text-gray-50 duration-500"
             href="https://github.com/Priyansh4444"

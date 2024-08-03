@@ -17,6 +17,8 @@ const RainbowMaterial = shaderMaterial(
     endRadius: 0,
     emissiveIntensity: 2.5,
     ratio: 1,
+    grayscale: 1.0,
+    rainbow: 0,
   },
   /*glsl*/ `
     varying vec2 vUv;
@@ -35,6 +37,7 @@ const RainbowMaterial = shaderMaterial(
     uniform float emissiveIntensity;
     uniform float time;
     uniform float ratio;
+    uniform float rainbow;
 
     vec2 mp;
     // ratio: 1/3 = neon, 1/4 = refracted, 1/5+ = approximate white
@@ -118,8 +121,14 @@ const RainbowMaterial = shaderMaterial(
       // 1/2 pi is the angle of the iridescence, 1 - uv.y is the thickness of the iridescence (-uv.y since you want it to spit blobs rather than take them in)
       // time / 10.0 is the speed of the iridescence changing
       // if you add the time to the angle you will get a really cool effect where the light will come and go with respect to the time!!!
-
-      gl_FragColor = vec4(area * co * l * brightness * emissiveIntensity, 1.0);
+      vec3 color = co * l * brightness * emissiveIntensity * area;
+      vec3 grayscale = vec3(dot(vec3(0.299, 0.587, 0.114), color));
+      if (rainbow == 0.) {
+        gl_FragColor = vec4(grayscale, 1.0);
+      }
+      else {
+        gl_FragColor = vec4(color, 1.0);
+      }
       if (gl_FragColor.r + gl_FragColor.g + gl_FragColor.b < 0.01) discard;
     }`,
 );
@@ -141,6 +150,7 @@ export const Rainbow = forwardRef<THREE.Mesh, RainbowProps>(
       endRadius = 0.65,
       emissiveIntensity = 2,
       fade = 0.65,
+      isRainbow,
       ...props
     },
     fRef,
@@ -173,6 +183,7 @@ export const Rainbow = forwardRef<THREE.Mesh, RainbowProps>(
           endRadius={endRadius}
           ratio={1}
           toneMapped={false}
+          rainbow={isRainbow ? 1 : 0}
         />
       </mesh>
     );

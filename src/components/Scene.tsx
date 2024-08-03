@@ -8,7 +8,7 @@ import * as THREE from "three";
 import { useState, useMemo } from "react";
 import { Ring } from "./Ring";
 
-function Scene() {
+function Scene({ isRainbow, setRainbow }: { isRainbow: boolean; setRainbow: React.Dispatch<React.SetStateAction<boolean>> }) {
   const [dpr, setDpr] = useState(1.6);
 
   return (
@@ -25,11 +25,11 @@ function Scene() {
         onDecline={() => setDpr(1)}
       />
       <color attach="background" args={["black"]} />
-      <Rainbow />
+      <Rainbow isRainbow={isRainbow}/>
       <Ring />
-      <EffectComposer resolutionScale={0.01}>
+      {/* <EffectComposer resolutionScale={0.01}>
         <Bloom mipmapBlur levels={3} opacity={0.25} intensity={0.5} luminanceThreshold={0.31} luminanceSmoothing={0.71} />
-      </EffectComposer>
+      </EffectComposer> */}
     </Canvas>
   );
 }

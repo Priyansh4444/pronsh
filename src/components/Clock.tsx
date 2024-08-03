@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { motion, useAnimation } from "framer-motion";
 import { useViewportScroll } from "framer-motion";
 
-const Clock = () => {
+const Clock = ({ isRainbow, setRainbow }: { isRainbow: boolean; setRainbow: React.Dispatch<React.SetStateAction<boolean>> }) => {
   const { scrollYProgress } = useViewportScroll();
   const handControls = useAnimation();
   const [scrollX1, setX1] = useState(50);
@@ -25,7 +25,7 @@ const Clock = () => {
   }, [scrollYProgress]);
 
   return (
-    <div className="navbar-icon -rotate-90">
+    <button className="navbar-icon -rotate-90" onClick={() => {setRainbow(!isRainbow)}}>
       <motion.svg
         id="clock"
         xmlns="http://www.w3.org/2000/svg"
@@ -44,7 +44,7 @@ const Clock = () => {
           strokeWidth="8"
         />
       </motion.svg>
-    </div>
+    </button>
   );
 };
 

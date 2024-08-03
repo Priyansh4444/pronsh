@@ -4,6 +4,7 @@ import dynamic from "next/dynamic";
 import AboutMe from "@/components/AboutMe";
 import MyProjects from "@/components/MyProjects";
 import { TextParallaxContentCollaborate } from "@/components/TextParallaxContent";
+import Navbar from "@/components/Navbar";
 
 const Scene = dynamic(() => import("@/components/Scene"), {
   ssr: false,
@@ -13,11 +14,14 @@ const blurStyle = {
   WebkitBackdropFilter: "blur(20px)", // For Safari browser support
 };
 export default function Home() {
+  const [isRainbow, setIsRainbow] = React.useState(false);
   return (
     <main className="flex flex-col h-full w-full">
+      <Navbar isRainbow={isRainbow} setRainbow={setIsRainbow} />
+
       <div className="relative transform-gpu h-[100vh] w-full">
         <Suspense fallback={<div>Loading...</div>}>
-          <Scene />
+          <Scene isRainbow={isRainbow} setRainbow={setIsRainbow}/>
         </Suspense>
         <div
           className="absolute bottom-[-5px] left-0 w-full h-8 z-50 opacity-40"
