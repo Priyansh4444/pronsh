@@ -20,7 +20,8 @@ import Link from "next/link";
 import { useToast } from "@/components/ui/use-toast";
 import { TConductorInstance } from "react-canvas-confetti/dist/types";
 import { MouseEvent } from "react";
-
+import Lottie from "lottie-react";
+import * as animationData from "@/components/BirdAnimation.json";
 
 export const TextParallaxContentCollaborate = () => {
     return (
@@ -138,6 +139,8 @@ const ContactMe = () => (
 );
 
 export function Footer() {
+
+
     const { toast } = useToast();
     const [particleCount, setParticleCount] = useState<number>(1);
     const [formData, setFormData] = useState({
@@ -302,6 +305,7 @@ export function Footer() {
                         <div className="flex space-x-4 mt-4">
                             <Icons />
                         </div>
+                        <Lottie animationData={animationData} loop className="w-[25%]" />
                     </div>
                     <form
                         className="space-y-6 md:space-y-6 lg:space-y-8"
