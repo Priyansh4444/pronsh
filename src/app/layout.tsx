@@ -3,7 +3,8 @@ import { Comfortaa } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import { Toaster } from "@/components/ui/toaster";
-import { Analytics } from "@vercel/analytics/react";
+import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next"
 const inter = Comfortaa({
   subsets: ["latin"],
   style: ["normal"],
@@ -25,6 +26,7 @@ export default function RootLayout({
         <Navbar />
         {children}
         <Toaster />
+        <SpeedInsights />
         <Analytics mode={"production"} />
       </body>
     </html>
