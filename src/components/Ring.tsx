@@ -91,7 +91,7 @@ export function Ring() {
   });
 
   return (
-    <group ref={groupRef} dispose={null} scale={5} position={[0, 0, -325.5]}>
+    <group ref={groupRef} dispose={null} scale={8} position={[0, 0, -325.5]}>
       <Text3D
         font={"/Comfortaa_Regular.json"}
         position={[-20, 15, 0]}
