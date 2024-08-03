@@ -2,7 +2,7 @@
 import { GithubIcon, Linkedin, Mail } from "lucide-react";
 import Link from "next/link";
 import Image from "next/legacy/image";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 const navbarStyle = {
   backdropFilter: "blur(20px)", // Blur effect for the glass-like effect
   boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)", // Soft box shadow for depth
@@ -103,3 +103,4 @@ export default function Navbar() {
     </header>
   );
 }
+
