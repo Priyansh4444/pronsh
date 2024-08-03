@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import { motion, useAnimation } from 'framer-motion';
-import { useViewportScroll } from 'framer-motion';
+import React, { useEffect, useState } from "react";
+import { motion, useAnimation } from "framer-motion";
+import { useViewportScroll } from "framer-motion";
 
 const Clock = () => {
   const { scrollYProgress } = useViewportScroll();
@@ -22,7 +22,6 @@ const Clock = () => {
       setX2(newX2);
       setY2(newY2);
 
-      // Set the starting point to the center of the circle
       setX1(50);
       setY1(50);
     });
@@ -38,7 +37,7 @@ const Clock = () => {
         height="25"
         className="stroke-gray-600 hover:stroke-gray-50 duration-500"
       >
-        <circle cx="50" cy="50" r="45"  strokeWidth="8" fill="none" />
+        <circle cx="50" cy="50" r="45" strokeWidth="8" fill="none" />
         <motion.line
           id="hand"
           x1={scrollX1}

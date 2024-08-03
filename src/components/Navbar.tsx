@@ -25,7 +25,7 @@ export default function Navbar() {
   const handleScroll = () => {
     if (window.scrollY > lastScrollY && window.scrollY > 100) {
       // Scroll down and scrolled more than 100px
-      setIsVisible(true);
+      setIsVisible(false);
     } else {
       // Scroll up
       setIsVisible(true);
@@ -105,4 +105,3 @@ export default function Navbar() {
     </header>
   );
 }
-
