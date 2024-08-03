@@ -6,6 +6,7 @@ import Image from "next/legacy/image";
 import { Badge } from './ui/badge';
 import { HorizontalScroll } from './HorizontalScroll';
 import { SquareArrowOutUpRight } from "lucide-react";
+import { Exo } from 'next/font/google';
 type WrapperStyle = MotionStyle & {
   '--x': MotionValue<string>;
   '--y': MotionValue<string>;
@@ -66,6 +67,10 @@ interface Project {
   github: string;
   tags: string[];
 }
+const ExoFont = Exo({
+  subsets: ['latin'],
+  style: ['normal'],
+});
 
 const ProjectCard = (project: Project) => {
   const mouseX = useMotionValue(0);
@@ -82,7 +87,7 @@ const ProjectCard = (project: Project) => {
   };
   return (
     <motion.div
-      className='animated-cards m-2 relative'
+      className={'animated-cards m-2 relative ' + ExoFont.className}
       style={
         {
           '--x': useMotionTemplate`${mouseX}px`,
