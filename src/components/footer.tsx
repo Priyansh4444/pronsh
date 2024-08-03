@@ -1,24 +1,32 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from "react";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import Explosion from "react-canvas-confetti/dist/presets/fireworks";
 import emailjs from "@emailjs/browser";
-import { Check, GithubIcon, InstagramIcon, Linkedin, Mail, ScrollText, X } from 'lucide-react';
-import Link from 'next/link';
+import {
+  Check,
+  GithubIcon,
+  InstagramIcon,
+  Linkedin,
+  Mail,
+  ScrollText,
+  X,
+} from "lucide-react";
+import Link from "next/link";
 import { useToast } from "@/components/ui/use-toast";
-import { TConductorInstance } from 'react-canvas-confetti/dist/types';
-import Framer from './MagneticButton';
+import { TConductorInstance } from "react-canvas-confetti/dist/types";
+import Framer from "./MagneticButton";
 
 export function Footer() {
   const { toast } = useToast();
   const [particleCount, setParticleCount] = useState<number>(1);
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    subject: '',
-    message: ''
+    name: "",
+    email: "",
+    subject: "",
+    message: "",
   });
 
   const updateParticleCount = useCallback(() => {
@@ -28,7 +36,9 @@ export function Footer() {
     setParticleCount(newParticleCount);
   }, []);
 
-  const [conductor, setConductor] = useState<undefined | TConductorInstance>(undefined);
+  const [conductor, setConductor] = useState<undefined | TConductorInstance>(
+    undefined,
+  );
 
   useEffect(() => {
     window.addEventListener("resize", updateParticleCount);
@@ -47,22 +57,24 @@ export function Footer() {
   }, [conductor]);
 
   const [errors, setErrors] = useState({
-    name: '',
-    email: '',
-    subject: '',
-    message: '',
+    name: "",
+    email: "",
+    subject: "",
+    message: "",
   });
 
-  const [status, setStatus] = useState('');
+  const [status, setStatus] = useState("");
   const [success, setSuccess] = useState(false);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
     const { id, value } = e.target;
     setFormData((prevData) => ({
       ...prevData,
       [id]: value,
     }));
-    setErrors({ ...errors, [id]: '' });
+    setErrors({ ...errors, [id]: "" });
   };
 
   const validateInput = (name: keyof typeof formData) => {
@@ -83,10 +95,12 @@ export function Footer() {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const isFormValid = Object.keys(formData).every(key => validateInput(key as keyof typeof formData));
+    const isFormValid = Object.keys(formData).every((key) =>
+      validateInput(key as keyof typeof formData),
+    );
     if (!isFormValid) return;
 
-    setStatus('Sending...');
+    setStatus("Sending...");
 
     const templateParams = {
       from_name: formData.name,
@@ -101,18 +115,22 @@ export function Footer() {
       const templateID = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!;
 
       emailjs.init(publicID);
-      const response = await emailjs.send(serviceID, templateID, templateParams);
+      const response = await emailjs.send(
+        serviceID,
+        templateID,
+        templateParams,
+      );
       // const response = {
       //   status: 200,
       // };
       if (response.status === 200) {
-        setStatus('Message sent successfully!');
+        setStatus("Message sent successfully!");
         setSuccess(true);
         setFormData({
-          name: '',
-          email: '',
-          subject: '',
-          message: ''
+          name: "",
+          email: "",
+          subject: "",
+          message: "",
         });
         splurgeConfetti();
 
@@ -122,7 +140,7 @@ export function Footer() {
           action: <Check className="text-green-500" size={44} />,
         });
       } else {
-        setStatus('Failed to send message. Please try again later.');
+        setStatus("Failed to send message. Please try again later.");
         setSuccess(false);
         toast({
           title: "Error",
@@ -132,7 +150,7 @@ export function Footer() {
       }
     } catch (error) {
       console.error(error);
-      setStatus('Failed to send message. Please try again later.');
+      setStatus("Failed to send message. Please try again later.");
       setSuccess(false);
       toast({
         title: "Error",
@@ -156,42 +174,90 @@ export function Footer() {
       <div className="container mx-auto px-4 md:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 lg:gap-16">
           <div className="space-y-4 md:space-y-6 lg:space-y-8">
-            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold">Get in Touch</h2>
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold">
+              Get in Touch
+            </h2>
             <p className="text-neutral-600 text-base md:text-lg lg:text-xl">
-              Have a question or want to work together? Fill out the form and we'll get back to you as soon as possible.
+              Have a question or want to work together? Fill out the form and I
+              will get back to you as soon as possible.
             </p>
             <div className="flex space-x-4 mt-4">
               <Icons />
             </div>
           </div>
-          <form className="space-y-6 md:space-y-6 lg:space-y-8" onSubmit={handleSubmit}>
+          <form
+            className="space-y-6 md:space-y-6 lg:space-y-8"
+            onSubmit={handleSubmit}
+          >
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 lg:gap-8">
               <div className="space-y-2 relative">
                 <Label htmlFor="name">Name</Label>
-                <Input id="name" placeholder="Enter your name" value={formData.name} onChange={handleChange} onBlur={() => validateInput("name")} />
-                {errors.name && <p className="text-red-500 text-xs absolute -bottom-5">{errors.name}</p>}
+                <Input
+                  id="name"
+                  placeholder="Enter your name"
+                  value={formData.name}
+                  onChange={handleChange}
+                  onBlur={() => validateInput("name")}
+                />
+                {errors.name && (
+                  <p className="text-red-500 text-xs absolute -bottom-5">
+                    {errors.name}
+                  </p>
+                )}
               </div>
               <div className="space-y-2 relative">
                 <Label htmlFor="email">Email</Label>
-                <Input id="email" type="email" placeholder="Enter your email" value={formData.email} onChange={handleChange} onBlur={() => validateInput("email")} />
-                {errors.email && <p className="text-red-500 text-xs absolute -bottom-5">{errors.email}</p>}
+                <Input
+                  id="email"
+                  type="email"
+                  placeholder="Enter your email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  onBlur={() => validateInput("email")}
+                />
+                {errors.email && (
+                  <p className="text-red-500 text-xs absolute -bottom-5">
+                    {errors.email}
+                  </p>
+                )}
               </div>
               <div className="space-y-2 relative">
                 <Label htmlFor="subject">Subject</Label>
-                <Input id="subject" type="text" placeholder="Enter the subject of the mail" value={formData.subject} onChange={handleChange} onBlur={() => validateInput("subject")} />
-                {errors.subject && <p className="text-red-500 text-xs absolute -bottom-5">{errors.subject}</p>}
+                <Input
+                  id="subject"
+                  type="text"
+                  placeholder="Enter the subject of the mail"
+                  value={formData.subject}
+                  onChange={handleChange}
+                  onBlur={() => validateInput("subject")}
+                />
+                {errors.subject && (
+                  <p className="text-red-500 text-xs absolute -bottom-5">
+                    {errors.subject}
+                  </p>
+                )}
               </div>
             </div>
             <div className="space-y-2 relative">
               <Label htmlFor="message">Message</Label>
-              <Textarea id="message" placeholder="Enter your message" className="min-h-[120px]" value={formData.message} onChange={handleChange} onBlur={() => validateInput("message")} />
-              {errors.message && <p className="text-red-500 text-xs absolute -bottom-5">{errors.message}</p>}
+              <Textarea
+                id="message"
+                placeholder="Enter your message"
+                className="min-h-[120px]"
+                value={formData.message}
+                onChange={handleChange}
+                onBlur={() => validateInput("message")}
+              />
+              {errors.message && (
+                <p className="text-red-500 text-xs absolute -bottom-5">
+                  {errors.message}
+                </p>
+              )}
             </div>
             <Button type="submit" className="w-full mt-12 md:w-auto">
               Send Message
             </Button>
             {status && <p>{status}</p>}
-
           </form>
         </div>
       </div>
@@ -204,23 +270,34 @@ const Icons = () => {
   return (
     <>
       <Framer>
-        <Link className="text-sm font-medium text-gray-600 hover:text-gray-50 duration-500" href="https://github.com/Priyansh4444">
+        <Link
+          className="text-sm font-medium text-gray-600 hover:text-gray-50 duration-500"
+          href="https://github.com/Priyansh4444"
+        >
           <GithubIcon size={iconSize} />
         </Link>
       </Framer>
-
       <Framer>
-        <Link className="text-sm font-medium text-gray-600 hover:text-gray-50 duration-500" href="https://www.linkedin.com/in/priyansh-shah-569b3b224/">
+        <Link
+          className="text-sm font-medium text-gray-600 hover:text-gray-50 duration-500"
+          href="https://www.linkedin.com/in/priyansh-shah-569b3b224/"
+        >
           <Linkedin size={iconSize} />
         </Link>
       </Framer>
       <Framer>
-        <Link className="text-sm font-medium text-gray-600 hover:text-gray-50 duration-500" href="mailto:Priyanshpokemon@gmail.com">
+        <Link
+          className="text-sm font-medium text-gray-600 hover:text-gray-50 duration-500"
+          href="mailto:Priyanshpokemon@gmail.com"
+        >
           <Mail size={iconSize} />
         </Link>
       </Framer>
       <Framer>
-        <Link className="text-sm font-medium text-gray-600 hover:text-gray-50 duration-500" href="https://devpost.com/Priyansh4444">
+        <Link
+          className="text-sm font-medium text-gray-600 hover:text-gray-50 duration-500"
+          href="https://devpost.com/Priyansh4444"
+        >
           <svg
             width={iconSize}
             height={iconSize}
@@ -238,15 +315,21 @@ const Icons = () => {
         </Link>
       </Framer>
       <Framer>
-        <Link className="text-sm font-medium text-gray-600 hover:text-gray-50 duration-500" href="https://www.instagram.com/ppronshh/">
+        <Link
+          className="text-sm font-medium text-gray-600 hover:text-gray-50 duration-500"
+          href="https://www.instagram.com/ppronshh/"
+        >
           <InstagramIcon size={iconSize} />
         </Link>
       </Framer>
       <Framer>
-        <Link className="text-sm font-medium text-gray-600 hover:text-gray-50 duration-500" href="https://drive.google.com/file/d/1RyENPIsiNQX1kiuLfzfRbrJYVUVBSmGV/view">
+        <Link
+          className="text-sm font-medium text-gray-600 hover:text-gray-50 duration-500"
+          href="https://drive.google.com/file/d/1RyENPIsiNQX1kiuLfzfRbrJYVUVBSmGV/view"
+        >
           <ScrollText size={iconSize} />
         </Link>
       </Framer>
     </>
   );
-}
+};

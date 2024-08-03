@@ -19,7 +19,10 @@ export default function Home() {
         <Suspense fallback={<div>Loading...</div>}>
           <Scene />
         </Suspense>
-        <div className="absolute bottom-[-5px] left-0 w-full h-8 z-50 opacity-40" style={blurStyle}></div>
+        <div
+          className="absolute bottom-[-5px] left-0 w-full h-8 z-50 opacity-40"
+          style={blurStyle}
+        ></div>
       </div>
       <div className="flex-1 w-full container my-32 mx-auto">
         <AboutMe />
@@ -30,9 +33,6 @@ export default function Home() {
   );
 }
 // pages/index.js
-
-
-
 
 // My Projects, {Resume, Contact Me}
 // Blog coming soon

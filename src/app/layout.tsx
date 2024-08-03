@@ -3,10 +3,10 @@ import { Comfortaa } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import { Toaster } from "@/components/ui/toaster";
-import { Analytics } from '@vercel/analytics/react';
+import { Analytics } from "@vercel/analytics/react";
 const inter = Comfortaa({
   subsets: ["latin"],
-  style: ['normal'],
+  style: ["normal"],
 });
 
 export const metadata: Metadata = {
@@ -23,10 +23,9 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <Navbar />
-
         {children}
         <Toaster />
-        <Analytics mode={'production'} />;
+        <Analytics mode={"production"} />;
       </body>
     </html>
   );

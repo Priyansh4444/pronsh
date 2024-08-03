@@ -1,15 +1,28 @@
-import { MouseEvent } from 'react';
-import { motion, MotionStyle, MotionValue, useMotionTemplate, useMotionValue, useTransform } from 'framer-motion';
-import { Card, CardHeader, CardTitle, CardDescription, CardFooter } from './ui/card';
+import { MouseEvent } from "react";
+import {
+  motion,
+  MotionStyle,
+  MotionValue,
+  useMotionTemplate,
+  useMotionValue,
+  useTransform,
+} from "framer-motion";
+import {
+  Card,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+  CardFooter,
+} from "./ui/card";
 import Link from "next/link";
 import Image from "next/legacy/image";
-import { Badge } from './ui/badge';
-import { HorizontalScroll } from './HorizontalScroll';
+import { Badge } from "./ui/badge";
+import { HorizontalScroll } from "./HorizontalScroll";
 import { SquareArrowOutUpRight } from "lucide-react";
-import { Exo } from 'next/font/google';
+import { Exo } from "next/font/google";
 type WrapperStyle = MotionStyle & {
-  '--x': MotionValue<string>;
-  '--y': MotionValue<string>;
+  "--x": MotionValue<string>;
+  "--y": MotionValue<string>;
 };
 
 const lineVariants = {
@@ -18,13 +31,13 @@ const lineVariants = {
     pathLength: 1,
     transition: {
       duration: 1,
-      ease: 'easeInOut',
+      ease: "easeInOut",
     },
   },
 };
 
 const MyProjects = () => {
-  const text = 'My Projects';
+  const text = "My Projects";
   const pathLength = useMotionValue(0);
   const opacity = useTransform(pathLength, [0.05, 0.15], [0, 1]);
 
@@ -68,8 +81,8 @@ interface Project {
   tags: string[];
 }
 const ExoFont = Exo({
-  subsets: ['latin'],
-  style: ['normal'],
+  subsets: ["latin"],
+  style: ["normal"],
 });
 
 const ProjectCard = (project: Project) => {
@@ -87,17 +100,17 @@ const ProjectCard = (project: Project) => {
   };
   return (
     <motion.div
-      className={'animated-cards m-2 relative ' + ExoFont.className}
+      className={"animated-cards m-2 relative " + ExoFont.className}
       style={
         {
-          '--x': useMotionTemplate`${mouseX}px`,
-          '--y': useMotionTemplate`${mouseY}px`,
+          "--x": useMotionTemplate`${mouseX}px`,
+          "--y": useMotionTemplate`${mouseY}px`,
         } as WrapperStyle
       }
       onMouseMove={handleMouseMove}
       key={project.title}
     >
-      <Card className="h-full group w-[80vw] lg:max-w-[40vw]" >
+      <Card className="h-full group w-[80vw] lg:max-w-[40vw]">
         <div className="p-4">
           <div className="overflow-hidden rounded-lg">
             <Image
@@ -115,7 +128,10 @@ const ProjectCard = (project: Project) => {
         <CardHeader className="pt-0 pb-3">
           <CardTitle>
             <div className="flex gap-2 items-center">
-              <Link href={project.github} className="flex items-center justify-center">
+              <Link
+                href={project.github}
+                className="flex items-center justify-center"
+              >
                 {project.title}
                 <SquareArrowOutUpRight className="ml-3 mb-1" size={24} />
               </Link>
@@ -125,46 +141,73 @@ const ProjectCard = (project: Project) => {
         </CardHeader>
         <CardFooter className="*:mr-2 *:mb-2 flex flex-wrap">
           {project.tags.map((tag) => (
-            <Badge variant="secondary" className='border-spacing-1 bg-transparent hover:bg-black text-white-100 border border-white' key={tag}>
+            <Badge
+              variant="secondary"
+              className="border-spacing-1 bg-transparent hover:bg-black text-white-100 border border-white"
+              key={tag}
+            >
               {tag}
             </Badge>
           ))}
         </CardFooter>
       </Card>
     </motion.div>
-  )
-}
+  );
+};
 
 export default MyProjects;
-
 
 const projects = [
   {
     title: "Nourish Ninja",
-    description: "Nourish Ninja provides personalized nutrition recommendations, a chat bot for tracking progress, recipe suggestions, and a shopping list generator. It also connects to Google Health Connect to provide a comprehensive view of the user's health data.",
+    description:
+      "Nourish Ninja provides personalized nutrition recommendations, a chat bot for tracking progress, recipe suggestions, and a shopping list generator. It also connects to Google Health Connect to provide a comprehensive view of the user's health data.",
     image: "/NourishNinja.jpg",
     github: "https://github.com/Priyansh4444/nourish_ninja",
     tags: ["Flutter", "Gemini API", "Firebase", "Android Studio", "Dart"],
   },
   {
     title: "TubeTasTic",
-    description: "TubeTasTic is meant to redefine how people use YouTube. In the present day, video recommendations are based on a black-box algorithm and marketing made to entice you to watch something that might not actually be there. We intend to change this by allowing users to gain insight about the video before they watch it.",
+    description:
+      "TubeTasTic is meant to redefine how people use YouTube. In the present day, video recommendations are based on a black-box algorithm and marketing made to entice you to watch something that might not actually be there. We intend to change this by allowing users to gain insight about the video before they watch it.",
     image: "/TubeTasTic.png",
     github: "https://github.com/benjamin-cates/tubetastic",
-    tags: ["Chrome Extention", "Typescript", "Gemini Api", "NextJs", "Clerk", "TailwindCSS", "Vercel"],
+    tags: [
+      "Chrome Extention",
+      "Typescript",
+      "Gemini Api",
+      "NextJs",
+      "Clerk",
+      "TailwindCSS",
+      "Vercel",
+    ],
   },
   {
     title: "AI Quest",
-    description: "Made Originally for IrvineHacks, was a customizable AI chatbot that you can have conversation with—through both text and speech—on a locally-hosted website, with auto-generated personalities and backstory.",
+    description:
+      "Made Originally for IrvineHacks, was a customizable AI chatbot that you can have conversation with—through both text and speech—on a locally-hosted website, with auto-generated personalities and backstory.",
     image: "/ChatQuest.png",
     github: "https://github.com/Priyansh4444/ChatQuest",
-    tags: ["NextJs", "TailwindCSS", "Gemini Api", "SQL", "Vectorization", "Python", "FastAPI", "OpenAI Whisper", "ElevenLabs", "Google Teachable Machine", "Image Recognition"],
+    tags: [
+      "NextJs",
+      "TailwindCSS",
+      "Gemini Api",
+      "SQL",
+      "Vectorization",
+      "Python",
+      "FastAPI",
+      "OpenAI Whisper",
+      "ElevenLabs",
+      "Google Teachable Machine",
+      "Image Recognition",
+    ],
   },
   {
     title: "SpiderBall",
-    description: "Ongoing Game made in Rust which takes inspiration from Spiderman and FlappyBird. The game is a 2D platformer where the player has to swing from one platform to another till the finish line.",
+    description:
+      "Ongoing Game made in Rust which takes inspiration from Spiderman and FlappyBird. The game is a 2D platformer where the player has to swing from one platform to another till the finish line.",
     image: "/BevyMan.gif",
     github: "https://github.com/Priyansh4444/bevy-man",
     tags: ["Rust", "Terrain Generation", "2D Platformer", "Bevy Engine"],
   },
-]
+];

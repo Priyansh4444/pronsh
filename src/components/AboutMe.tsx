@@ -1,13 +1,13 @@
-import React from 'react'
+import React from "react";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 import Image from "next/legacy/image";
-import { LucideCloudLightning, Zap } from 'lucide-react';
+import { LucideCloudLightning, Zap } from "lucide-react";
 const AboutMe = () => {
   const getImageName = (path: string) => {
-    const parts = path.split('/');
+    const parts = path.split("/");
     const filename = parts[parts.length - 1];
-    const nameWithoutExtension = filename.split('.')[0];
+    const nameWithoutExtension = filename.split(".")[0];
     return nameWithoutExtension;
   };
   const images = [
@@ -27,7 +27,7 @@ const AboutMe = () => {
     "/svgs/postgresql.svg",
     "/svgs/tensorflow.svg",
     "/svgs/drizzle.png",
-  ]
+  ];
   return (
     <section className="bg-background relative py-12 md:py-20">
       <Container>
@@ -35,37 +35,51 @@ const AboutMe = () => {
           <RetroGrid />
           <div className="container flex items-center justify-center">
             <svg width="0" height="0">
-              <linearGradient id="blue-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+              <linearGradient
+                id="blue-gradient"
+                x1="0%"
+                y1="0%"
+                x2="100%"
+                y2="100%"
+              >
                 <stop stopColor="#ffd319" offset="0%" />
                 <stop stopColor="#ff2975" offset="50%" />
                 <stop stopColor="#8c1eff" offset="100%" />
               </linearGradient>
             </svg>
-            <Zap className="mr-2 h-10 w-10 " style={{ stroke: "url(#blue-gradient)" }} />
+            <Zap
+              className="mr-2 h-10 w-10 "
+              style={{ stroke: "url(#blue-gradient)" }}
+            />
             <h2 className="text-2xl selection:bg-[#e76ec957] font-bold bg-gradient-to-b text-transparent from-[#ffd319] via-[#ff2975] to-[#8c1eff] bg-clip-text md:text-4xl">
               My Preferred Technologies
             </h2>
           </div>
-          <p className="text-muted-foreground mt-2 md:text-lg selection:bg-[#6ee7b757] mb-5">Just some things that excite me in no particular order</p>
-          <Marquee >
+          <p className="text-muted-foreground mt-2 md:text-lg selection:bg-[#6ee7b757] mb-5">
+            Just some things that excite me in no particular order
+          </p>
+          <Marquee>
             {images.concat(images).map((image, index) => (
               <div
                 key={index}
                 className="relative h-20 min-w-[100px] flex justify-center items-center mx-4"
               >
                 <div className="relative h-full w-full flex justify-center items-center">
-                  <Image src={image} alt={getImageName(image)} layout="fill" objectFit="contain" />
+                  <Image
+                    src={image}
+                    alt={getImageName(image)}
+                    layout="fill"
+                    objectFit="contain"
+                  />
                 </div>
               </div>
             ))}
-
           </Marquee>
         </div>
       </Container>
     </section>
-  )
-}
-
+  );
+};
 
 interface MarqueeProps {
   className?: string;
@@ -146,7 +160,6 @@ function RetroGrid({ className }: { className?: string }) {
           )}
         />
       </div>
-
     </div>
   );
 }
@@ -160,10 +173,10 @@ const Container = ({ children }: { children: React.ReactNode }) => (
       <div className="relative z-20 mx-auto py-8">{children}</div>
     </div>
   </div>
-)
+);
 const Ellipses = () => {
   const sharedClasses =
-    "rounded-full outline outline-gray-950 sm:my-6 md:my-8 size-1 my-4 outline-gray-20 bg-green-400"
+    "rounded-full outline outline-gray-950 sm:my-6 md:my-8 size-1 my-4 outline-gray-20 bg-green-400";
   return (
     <div className="absolute z-0 grid h-full w-full items-center gap-8 lg:grid-cols-2">
       <section className="absolute z-0 grid h-full w-full grid-cols-2 place-content-between">
@@ -173,11 +186,7 @@ const Ellipses = () => {
         <div className={`${sharedClasses} -mx-[2px] place-self-end`}></div>
       </section>
     </div>
-  )
-}
+  );
+};
 
-
-
-
-
-export default AboutMe
+export default AboutMe;

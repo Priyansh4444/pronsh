@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils";
 import { useMotionTemplate, useMotionValue, motion } from "framer-motion";
 
 export interface InputProps
-  extends React.InputHTMLAttributes<HTMLInputElement> { }
+  extends React.InputHTMLAttributes<HTMLInputElement> {}
 
 const Input = React.forwardRef<HTMLInputElement, InputProps>(
   ({ className, type, ...props }, ref) => {
@@ -46,14 +46,14 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
            shadow-[0px_0px_1px_1px_var(--neutral-700)]
            group-hover/input:shadow-none transition duration-400
            `,
-            className
+            className,
           )}
           ref={ref}
           {...props}
         />
       </motion.div>
     );
-  }
+  },
 );
 Input.displayName = "Input";
 

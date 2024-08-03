@@ -1,11 +1,11 @@
 // components/Rainbow.tsx
 // Component taken from https://vercel.com/blog/building-an-interactive-webgl-experience-in-next-js
 
-import React, { forwardRef, useRef } from 'react'
-import { extend, useFrame, useThree } from '@react-three/fiber'
-import { shaderMaterial } from '@react-three/drei'
-import * as THREE from 'three'
-import { Material } from 'three';
+import React, { forwardRef, useRef } from "react";
+import { extend, useFrame, useThree } from "@react-three/fiber";
+import { shaderMaterial } from "@react-three/drei";
+import * as THREE from "three";
+import { Material } from "three";
 
 // Define the RainbowMaterial using shaderMaterial
 const RainbowMaterial = shaderMaterial(
@@ -18,7 +18,7 @@ const RainbowMaterial = shaderMaterial(
     emissiveIntensity: 2.5,
     ratio: 1,
   },
-    /*glsl*/ `
+  /*glsl*/ `
     varying vec2 vUv;
     void main() {
       vUv = uv;
@@ -26,7 +26,7 @@ const RainbowMaterial = shaderMaterial(
       gl_Position = projectionMatrix * viewMatrix * modelPosition;
     }
     `,
-    /*glsl*/ `
+  /*glsl*/ `
     varying vec2 vUv;
     uniform float fade;
     uniform float speed;
@@ -121,44 +121,62 @@ const RainbowMaterial = shaderMaterial(
 
       gl_FragColor = vec4(area * co * l * brightness * emissiveIntensity, 1.0);
       if (gl_FragColor.r + gl_FragColor.g + gl_FragColor.b < 0.01) discard;
-    }`
-)
+    }`,
+);
 
-extend({ RainbowMaterial })
+extend({ RainbowMaterial });
 
 interface RainbowProps {
-  startRadius?: number
-  endRadius?: number
-  emissiveIntensity?: number
-  fade?: number
-  [key: string]: any
+  startRadius?: number;
+  endRadius?: number;
+  emissiveIntensity?: number;
+  fade?: number;
+  [key: string]: any;
 }
 
-export const Rainbow = forwardRef<THREE.Mesh, RainbowProps>(({
-  startRadius = 0.15,
-  endRadius = 0.65,
-  emissiveIntensity = 2.,
-  fade = .65,
-  ...props
-}, fRef) => {
-  const material = useRef<(Material)>(null)
-  const { viewport } = useThree()
-  const { width, height } = viewport
-  // calculate the maximum length the rainbow has to have to reach all screen corners
-  const length = Math.hypot(width, height) + 1.5 // add 1.5 to due motion of the rainbow
-  useFrame((_, delta) => {
-    if (material.current) {
-      // @ts-ignore
-      material.current.time += delta * material.current.speed
-    }
-  })
-  return (
-    <mesh ref={fRef} scale={[length, length, 1]} position={[0, 0, -500]} {...props}>
-      <planeGeometry />
-      {/* @ts-ignore */}
-      <rainbowMaterial ref={material} key={RainbowMaterial.key} fade={fade} startRadius={startRadius} endRadius={endRadius} ratio={1} toneMapped={false} />
-    </mesh>
-  )
-})
+export const Rainbow = forwardRef<THREE.Mesh, RainbowProps>(
+  (
+    {
+      startRadius = 0.15,
+      endRadius = 0.65,
+      emissiveIntensity = 2,
+      fade = 0.65,
+      ...props
+    },
+    fRef,
+  ) => {
+    const material = useRef<Material>(null);
+    const { viewport } = useThree();
+    const { width, height } = viewport;
+    // calculate the maximum length the rainbow has to have to reach all screen corners
+    const length = Math.hypot(width, height) + 1.5; // add 1.5 to due motion of the rainbow
+    useFrame((_, delta) => {
+      if (material.current) {
+        // @ts-ignore
+        material.current.time += delta * material.current.speed;
+      }
+    });
+    return (
+      <mesh
+        ref={fRef}
+        scale={[length, length, 1]}
+        position={[0, 0, -500]}
+        {...props}
+      >
+        <planeGeometry />
+        {/* @ts-ignore */}
+        <rainbowMaterial
+          ref={material}
+          key={RainbowMaterial.key}
+          fade={fade}
+          startRadius={startRadius}
+          endRadius={endRadius}
+          ratio={1}
+          toneMapped={false}
+        />
+      </mesh>
+    );
+  },
+);
 
-Rainbow.displayName = 'Rainbow'
+Rainbow.displayName = "Rainbow";
