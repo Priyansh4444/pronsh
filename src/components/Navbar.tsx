@@ -10,6 +10,7 @@ const navbarStyle = {
   borderBottom: "1px solid rgba(255, 255, 255, 0.03)", // Slight border for glossy effect
 };
 import { useScramble } from "use-scramble";
+import Clock from "./Clock";
 
 export default function Navbar() {
   const [isVisible, setIsVisible] = useState(true);
@@ -24,7 +25,7 @@ export default function Navbar() {
   const handleScroll = () => {
     if (window.scrollY > lastScrollY && window.scrollY > 100) {
       // Scroll down and scrolled more than 100px
-      setIsVisible(false);
+      setIsVisible(true);
     } else {
       // Scroll up
       setIsVisible(true);
@@ -61,6 +62,7 @@ export default function Navbar() {
           <span ref={ref} onMouseOver={replay}></span>
         </Link>
         <nav className="hidden space-x-4 md:flex">
+          <Clock />
           <Link
             className="text-sm font-medium text-gray-600 hover:text-gray-50 duration-500"
             href="https://github.com/Priyansh4444"
