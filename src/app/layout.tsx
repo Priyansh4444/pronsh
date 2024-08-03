@@ -25,7 +25,7 @@ export default function RootLayout({
         <Navbar />
         {children}
         <Toaster />
-        <Analytics mode={"production"} />;
+        <Analytics mode={"production"} />
       </body>
     </html>
   );

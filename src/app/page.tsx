@@ -38,3 +38,4 @@ export default function Home() {
 // Blog coming soon
 // Sound Effect on hovering on buttons
 // Random Fact generator
+// Adding the bird animation thingy

@@ -1,5 +1,5 @@
 "use client";
-import { Environment, PerformanceMonitor, Stats } from "@react-three/drei";
+import { PerformanceMonitor } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import { EffectComposer, Bloom } from "@react-three/postprocessing";
 import React from "react";
@@ -24,7 +24,6 @@ function Scene() {
         onIncline={() => setDpr(2)}
         onDecline={() => setDpr(1)}
       />
-      <Stats />
       <color attach="background" args={["black"]} />
       <Rainbow />
       <Ring />
