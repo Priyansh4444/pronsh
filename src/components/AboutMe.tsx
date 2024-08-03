@@ -22,7 +22,7 @@ const AboutMe = () => {
     "/svgs/firebase.svg",
     "/svgs/flutter.svg",
     "/svgs/dart.svg",
-    "/svgs/webgl.svg",
+    "/svgs/WebGL.svg",
     "/svgs/pytorch.svg",
     "/svgs/postgresql.svg",
     "/svgs/tensorflow.svg",
