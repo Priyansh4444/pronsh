@@ -7,8 +7,8 @@ const Clock = () => {
   const handControls = useAnimation();
   const [scrollX1, setX1] = useState(50);
   const [scrollY1, setY1] = useState(50);
-  const [scrollX2, setX2] = useState(50);
-  const [scrollY2, setY2] = useState(5);
+  const [scrollX2, setX2] = useState(95);
+  const [scrollY2, setY2] = useState(50);
   const [rotation, setRotation] = useState(0);
 
   useEffect(() => {
@@ -21,9 +21,6 @@ const Clock = () => {
 
       setX2(newX2);
       setY2(newY2);
-
-      setX1(50);
-      setY1(50);
     });
   }, [scrollYProgress]);
 
