@@ -27,9 +27,9 @@ function Scene() {
       <color attach="background" args={["black"]} />
       <Rainbow />
       <Ring />
-      {/* <EffectComposer resolutionScale={0.01}>
-                <Bloom mipmapBlur levels={3} opacity={0.25} intensity={0.5} luminanceThreshold={0.31} luminanceSmoothing={0.71} />
-            </EffectComposer> */}
+      <EffectComposer resolutionScale={0.01}>
+        <Bloom mipmapBlur levels={3} opacity={0.25} intensity={0.5} luminanceThreshold={0.31} luminanceSmoothing={0.71} />
+      </EffectComposer>
     </Canvas>
   );
 }
