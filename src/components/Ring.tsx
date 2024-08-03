@@ -10,7 +10,7 @@ import { Group, Mesh } from "three";
 import * as THREE from "three";
 export function Ring() {
   const materialProps = {
-    thickness: 3,
+    thickness: 10,
     roughness: 0,
     transmission: 1,
     ior: 4,
@@ -91,14 +91,14 @@ export function Ring() {
   });
 
   return (
-    <group ref={groupRef} dispose={null} scale={7} position={[0, 0, -325.5]}>
+    <group ref={groupRef} dispose={null} scale={5} position={[0, 0, -325.5]}>
       <Text3D
         font={"/Comfortaa_Regular.json"}
         position={[-20, 15, 0]}
         scale={[8, 8.5, 5.0]}
         rotation={[0, 0, 0]}
       >
-        <MeshTransmissionMaterial {...materialProps} />
+        <meshStandardMaterial metalness={2.2} color={"black"} />
         Pronsh
       </Text3D>
       <mesh
@@ -108,7 +108,7 @@ export function Ring() {
         ref={ref}
         geometry={(nodes1.Torus as THREE.Mesh).geometry}
       >
-        <MeshTransmissionMaterial {...materialProps} color={"black"}/>
+        <MeshTransmissionMaterial {...materialProps} />
       </mesh>
       <group scale={10}>
         <group ref={hourHandRef}>
