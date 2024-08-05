@@ -49,7 +49,7 @@ export default function Home() {
             <span className="text-sm font-medium text-white">Available for work!</span>
           </Badge>
           <h1 className="max-w-7xl text-4xl font-bold md:text-5xl lg:text-6xl">
-            Hi I'm a developer interested in <br /> <FlipWords className="text-transparent bg-clip-text bg-gradient-to-r from-rose-700 to-pink-600" words={words}></FlipWords> <br /> converting problems into solutions.
+            Hi I&apos; a developer interested in <br /> <FlipWords className="text-transparent bg-clip-text bg-gradient-to-r from-rose-700 to-pink-600" words={words}></FlipWords> <br /> converting problems into solutions.
           </h1>
           <p className="mt-5 max-w-prose text-muted-foreground sm:text-lg">
             Who has an obsession with latest tech, projects and suprisingly research.
