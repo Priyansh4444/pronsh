@@ -57,10 +57,10 @@ export default function Home() {
         </section>
       </div>
       {/* <ScrollSection /> */}
-      <div className="my-32">
+      <div className="mt-32">
         <MyProjects />
       </div>
-      <div className="flex-1 w-full container my-32 mx-auto">
+      <div className="flex-1 w-full container mx-auto">
         <AboutMe />
       </div>
 
