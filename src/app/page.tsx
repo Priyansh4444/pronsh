@@ -9,7 +9,9 @@ import { Badge } from "@/components/ui/badge";
 import { Inter } from "next/font/google";
 import { FlipWords } from "@/components/ui/flip-words";
 import ScrollSection from "@/components/VerticalScroll";
-
+import Intro from "@/components/Preloader";
+import Lenis from "lenis";
+import { AnimatePresence } from "framer-motion";
 const inter = Inter({
   subsets: ["latin"],
   style: ["normal"],
@@ -26,10 +28,29 @@ const blurStyle = {
 };
 export default function Home() {
   const [isRainbow, setIsRainbow] = React.useState(false);
+  const [loading, setLoading] = React.useState(true);
+  React.useEffect(() => {
+    const lenis = new Lenis();
+    function raf(time: number) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+    requestAnimationFrame(raf);
+  }, []);
+
+  React.useEffect(() => {
+    const timeOut = setTimeout(() => {
+      setLoading(false);
+      document.body.style.cursor = "default";
+      window.scrollTo(0, 0);
+    }, 2000);
+    return () => clearTimeout(timeOut);
+  }, []);
+
   return (
     <main className="flex flex-col h-full w-full">
       <Navbar isRainbow={isRainbow} setRainbow={setIsRainbow} />
-
+      <AnimatePresence mode="wait">{loading && <Intro />}</AnimatePresence>
       <div className="relative h-[100vh] w-full">
         <Suspense fallback={<div>Loading...</div>}>
           <Scene isRainbow={isRainbow} setRainbow={setIsRainbow} />
