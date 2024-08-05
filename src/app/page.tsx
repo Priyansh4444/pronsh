@@ -30,12 +30,19 @@ export default function Home() {
   const [isRainbow, setIsRainbow] = React.useState(false);
   const [loading, setLoading] = React.useState(true);
   React.useEffect(() => {
-    const lenis = new Lenis();
+    const lenis = new Lenis({
+      duration: 1.2,  // Adjust duration for smoother scroll
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),  // Custom easing function
+      smoothWheel: true,  // Enable smooth scrolling for wheel events
+    });
     function raf(time: number) {
       lenis.raf(time);
       requestAnimationFrame(raf);
     }
     requestAnimationFrame(raf);
+    return () => {
+      lenis.destroy();
+    };
   }, []);
 
   React.useEffect(() => {
@@ -48,7 +55,7 @@ export default function Home() {
   }, []);
 
   return (
-    <main className="flex flex-col h-full w-full">
+    <main className="flex flex-col h-full w-full transform-gpu">
       <Navbar isRainbow={isRainbow} setRainbow={setIsRainbow} />
       <AnimatePresence mode="wait">{loading && <Intro />}</AnimatePresence>
       <div className="relative h-[100vh] w-full">
