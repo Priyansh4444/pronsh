@@ -40,7 +40,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={inter.className + " selection:bg-slate-300 selection:bg-opacity-20"}>
         {children}
         <Toaster />
         <SpeedInsights />

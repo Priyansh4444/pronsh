@@ -151,3 +151,21 @@
   display: block;
   margin-right: 30px;
 }
+
+/* App.css */
+.scroll-container {
+  height: 200vh; /* Makes the page scrollable */
+  display: flex;
+  justify-content: center;
+}
+
+.scroll-content {
+  position: sticky;
+  top: 10%; /* Adjust as needed */
+  max-height: 100px;
+  padding: 20px;
+  background: rgb(255, 0, 0);
+  box-shadow: 0 4px 6px rgb(207, 24, 24);
+  border-radius: 8px;
+  text-align: center;
+}

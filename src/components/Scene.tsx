@@ -5,7 +5,7 @@ import { EffectComposer, Bloom } from "@react-three/postprocessing";
 import React from "react";
 import { Rainbow } from "./Rainbow";
 import * as THREE from "three";
-import { useState, useMemo } from "react";
+import { useState } from "react";
 import { Ring } from "./Ring";
 
 function Scene({ isRainbow, setRainbow }: { isRainbow: boolean; setRainbow: React.Dispatch<React.SetStateAction<boolean>> }) {
@@ -26,10 +26,9 @@ function Scene({ isRainbow, setRainbow }: { isRainbow: boolean; setRainbow: Reac
       />
       <color attach="background" args={["black"]} />
       <Rainbow isRainbow={isRainbow}/>
-      <Ring />
-      {/* <EffectComposer resolutionScale={0.01}>
+      <EffectComposer resolutionScale={0.01}>
         <Bloom mipmapBlur levels={3} opacity={0.25} intensity={0.5} luminanceThreshold={0.31} luminanceSmoothing={0.71} />
-      </EffectComposer> */}
+      </EffectComposer>
     </Canvas>
   );
 }

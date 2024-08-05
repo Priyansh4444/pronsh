@@ -44,7 +44,7 @@ const MyProjects = () => {
   return (
     <section className="mb-52">
       <div className="group relative text-center flex flex-col justify-center align-middle items-center">
-        <span className="glitch animate-pulse text-6xl" data-text={text}>
+        <span className="glitch animate-pulse text-6xl font-bold" data-text={text}>
           {text}
         </span>
         <motion.svg

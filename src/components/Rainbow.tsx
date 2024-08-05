@@ -122,7 +122,7 @@ const RainbowMaterial = shaderMaterial(
       // time / 10.0 is the speed of the iridescence changing
       // if you add the time to the angle you will get a really cool effect where the light will come and go with respect to the time!!!
       vec3 color = co * l * brightness * emissiveIntensity * area;
-      vec3 grayscale = vec3(dot(vec3(0.299, 0.587, 0.114), color));
+      vec3 grayscale = vec3(dot(vec3(0.199, 0.587, 0.114), color));
       if (rainbow == 0.) {
         gl_FragColor = vec4(grayscale, 1.0);
       }

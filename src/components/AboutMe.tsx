@@ -55,7 +55,7 @@ const AboutMe = () => {
               My Preferred Technologies
             </h2>
           </div>
-          <p className="text-muted-foreground mt-2 md:text-lg selection:bg-[#6ee7b757] mb-5">
+          <p className="text-muted-foreground font-semibold mt-2 md:text-lg selection:bg-[#6ee7b757] mb-5">
             Just some things that excite me in no particular order
           </p>
           <Marquee>

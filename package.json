@@ -36,6 +36,7 @@
     "react": "^18",
     "react-canvas-confetti": "^2.0.7",
     "react-dom": "^18",
+    "react-intersection-observer": "^9.13.0",
     "suspend-react": "^0.1.3",
     "tailwind-merge": "^2.4.0",
     "tailwindcss-animate": "^1.0.7",
