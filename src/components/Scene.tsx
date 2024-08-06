@@ -7,7 +7,7 @@ import { Rainbow } from "./Rainbow";
 import { useState } from "react";
 
 function Scene({ isRainbow, setRainbow }: { isRainbow: boolean; setRainbow: React.Dispatch<React.SetStateAction<boolean>> }) {
-  const [dpr, setDpr] = useState(1);
+  const [dpr, setDpr] = useState(0.3);
   const [tooLaggy, setTooLaggy] = useState(false);
 
   return (
@@ -20,9 +20,12 @@ function Scene({ isRainbow, setRainbow }: { isRainbow: boolean; setRainbow: Reac
       camera={{ position: [0, 0, 5] }}
     >
       <PerformanceMonitor
-        onIncline={() => setDpr(2)}
+        onIncline={() => {
+          setDpr(0.8);
+          setTooLaggy(false);
+        }}
         onDecline={() => {
-          setDpr(0.7);
+          setDpr(0.1);
           setTooLaggy(true);
         }}
       />
@@ -32,7 +35,7 @@ function Scene({ isRainbow, setRainbow }: { isRainbow: boolean; setRainbow: Reac
         <EffectComposer resolutionScale={0.01}>
           <Bloom mipmapBlur levels={3} opacity={0.25} intensity={0.5} luminanceThreshold={0.31} luminanceSmoothing={0.71} />
         </EffectComposer>
-        }
+      }
     </Canvas>
   );
 }
