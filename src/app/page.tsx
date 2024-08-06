@@ -29,21 +29,21 @@ const blurStyle = {
 export default function Home() {
   const [isRainbow, setIsRainbow] = React.useState(false);
   const [loading, setLoading] = React.useState(true);
-  // React.useEffect(() => {
-  //   const lenis = new Lenis({
-  //     duration: 1.2,  // Adjust duration for smoother scroll
-  //     easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),  // Custom easing function
-  //     smoothWheel: true,  // Enable smooth scrolling for wheel events
-  //   });
-  //   function raf(time: number) {
-  //     lenis.raf(time);
-  //     requestAnimationFrame(raf);
-  //   }
-  //   requestAnimationFrame(raf);
-  //   return () => {
-  //     lenis.destroy();
-  //   };
-  // }, []);
+  React.useEffect(() => {
+    const lenis = new Lenis({
+      duration: 1.2,  // Adjust duration for smoother scroll
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),  // Custom easing function
+      smoothWheel: true,  // Enable smooth scrolling for wheel events
+    });
+    function raf(time: number) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+    requestAnimationFrame(raf);
+    return () => {
+      lenis.destroy();
+    };
+  }, []);
 
   React.useEffect(() => {
     const timeOut = setTimeout(() => {
