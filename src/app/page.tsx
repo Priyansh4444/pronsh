@@ -8,10 +8,10 @@ import Navbar from "@/components/Navbar";
 import { Badge } from "@/components/ui/badge";
 import { Inter } from "next/font/google";
 import { FlipWords } from "@/components/ui/flip-words";
-import ScrollSection from "@/components/VerticalScroll";
 import Intro from "@/components/Preloader";
 import Lenis from "lenis";
 import { AnimatePresence } from "framer-motion";
+import StickyScroll from "@/components/VerticalScroll";
 const inter = Inter({
   subsets: ["latin"],
   style: ["normal"],
@@ -55,9 +55,10 @@ export default function Home() {
   }, []);
 
   return (
-    <main className="flex flex-col h-full w-full transform-gpu">
+    <main className="flex flex-col h-full w-full">
       <Navbar isRainbow={isRainbow} setRainbow={setIsRainbow} />
       <AnimatePresence mode="wait">{loading && <Intro />}</AnimatePresence>
+      {/* <StickyScroll /> */}
       <div className="relative h-[100vh] w-full">
         <Suspense fallback={<div>Loading...</div>}>
           <Scene isRainbow={isRainbow} setRainbow={setIsRainbow} />

@@ -1,10 +1,9 @@
-import type { Metadata } from "next";
-import { Comfortaa } from "next/font/google";
-import "./globals.css";
-import Navbar from "@/components/Navbar";
 import { Toaster } from "@/components/ui/toaster";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import type { Metadata } from "next";
+import { Comfortaa } from "next/font/google";
+import "./globals.css";
 const inter = Comfortaa({
   subsets: ["latin"],
   style: ["normal"],

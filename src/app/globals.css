@@ -152,23 +152,6 @@
   margin-right: 30px;
 }
 
-/* App.css */
-.scroll-container {
-  height: 200vh; /* Makes the page scrollable */
-  display: flex;
-  justify-content: center;
-}
-
-.scroll-content {
-  position: sticky;
-  top: 10%; /* Adjust as needed */
-  max-height: 100px;
-  padding: 20px;
-  background: rgb(255, 0, 0);
-  box-shadow: 0 4px 6px rgb(207, 24, 24);
-  border-radius: 8px;
-  text-align: center;
-}
 .spinner-box {
   width: 300px;
   height: 300px;
@@ -242,4 +225,24 @@
   100% {
     transform: rotate(-315deg);
   }
+}
+
+/* components/StickyScroll.module.css */
+.container_new {
+  scroll-snap-type: y mandatory;
+  overflow-y: scroll;
+  height: 200vh;
+}
+
+.section_class {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+  scroll-snap-align: start;
+  position: sticky;
+  top: 0;
+  background: #f0f0f0; /* Example background */
+  border-bottom: 1px solid #ccc; /* Example border */
 }

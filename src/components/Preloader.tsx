@@ -11,7 +11,7 @@ const introStyles: React.CSSProperties = {
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    zIndex: 99999998,
+    zIndex: 20,
     width: "100vw",
     height: "100vh",
     backgroundColor: "black",
