@@ -133,7 +133,7 @@ const ProjectCard = (project: Project) => {
       >
         <Atropos className="my-atropos h-full" activeOffset={10} rotateXMax={5} rotateYMax={5}>
 
-          <Card className="group h-full w-[80vw] lg:max-w-[40vw]">
+          <Card className="group h-full w-[80vw] lg:max-w-[40vw]" >
 
             <div className="p-4">
               <div className="overflow-hidden rounded-lg">
@@ -151,7 +151,7 @@ const ProjectCard = (project: Project) => {
 
               </div>
             </div>
-            <CardHeader className="pt-0 pb-3">
+            <CardHeader className="pt-0 pb-3 atropos-scale" data-atropos-offset="-1" >
               <CardTitle>
                 <div className="flex gap-2 items-center">
 
@@ -159,9 +159,9 @@ const ProjectCard = (project: Project) => {
                   <SquareArrowOutUpRight className="ml-3 mb-1" size={24} />
                 </div>
               </CardTitle>
-              <CardDescription>{project.description}</CardDescription>
+              <CardDescription data-atrops-offset="-2">{project.description}</CardDescription>
             </CardHeader>
-            <CardFooter className="*:mr-2 *:mb-2 flex flex-wrap">
+            <CardFooter className="*:mr-2 *:mb-2 flex flex-wrap" data-atrops-offset="-2">
               {project.tags.map((tag) => (
                 <Badge
                   variant="secondary"
