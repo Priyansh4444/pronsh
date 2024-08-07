@@ -46,16 +46,16 @@ const MyProjects = () => {
   }, []);
   return (
     <section className="mb-52">
-      <div className="group relative text-center flex flex-col justify-center align-middle items-center">
+      <div className="group relative text-center flex flex-col justify-center align-middle items-center h-full">
         {isClient && (
           <video
             autoPlay
             loop
             muted
             playsInline
-            className="absolute top-0 object-cover left-0 w-[100vw] h-[200vh] z-0"
+            className="absolute top-0 left-0 w-[100vw] object-cover h-[200vh] z-[-3]"
           >
-            <source src="/bg.webm" type="video/webm" />
+            <source src="https://videos.pexels.com/video-files/2792370/2792370-hd_1920_1080_30fps.mp4" type="video/mp4" />
             Your browser does not support the video tag.
           </video>
         )}
