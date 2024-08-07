@@ -1,4 +1,4 @@
-import { MouseEvent } from "react";
+import { MouseEvent, useEffect, useState } from "react";
 import {
   motion,
   MotionStyle,
@@ -20,6 +20,7 @@ import { Badge } from "./ui/badge";
 import { HorizontalScroll } from "./HorizontalScroll";
 import { SquareArrowOutUpRight } from "lucide-react";
 import { Exo } from "next/font/google";
+import Atropos from 'atropos/react';
 type WrapperStyle = MotionStyle & {
   "--x": MotionValue<string>;
   "--y": MotionValue<string>;
@@ -37,16 +38,30 @@ const lineVariants = {
 };
 
 const MyProjects = () => {
-  const text = "My Projects";
   const pathLength = useMotionValue(0);
   const opacity = useTransform(pathLength, [0.05, 0.15], [0, 1]);
-
+  const [isClient, setIsClient] = useState(false);
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
   return (
     <section className="mb-52">
       <div className="group relative text-center flex flex-col justify-center align-middle items-center">
-        <span className="glitch animate-pulse text-6xl font-bold" data-text={text}>
-          {text}
-        </span>
+        {isClient && (
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="absolute top-0 object-cover left-0 w-[100vw] h-[200vh] z-0"
+          >
+            <source src="/bg.webm" type="video/webm" />
+            Your browser does not support the video tag.
+          </video>
+        )}
+        <div className="glitch animate-pulse text-6xl font-bold">
+          My Projects
+        </div>
         <motion.svg
           initial="initial"
           whileInView="visible"
@@ -66,7 +81,9 @@ const MyProjects = () => {
           />
         </motion.svg>
       </div>
+
       <HorizontalScroll>
+
         {projects.map((project) => ProjectCard(project))}
       </HorizontalScroll>
     </section>
@@ -99,8 +116,9 @@ const ProjectCard = (project: Project) => {
     mouseY.set(clientY - top);
   };
   return (
+
     <motion.div
-      className={"animated-cards m-2 relative " + ExoFont.className}
+      className={"animated-cards m-2 relative h-full " + ExoFont.className}
       style={
         {
           "--x": useMotionTemplate`${mouseX}px`,
@@ -110,48 +128,55 @@ const ProjectCard = (project: Project) => {
       onMouseMove={handleMouseMove}
       key={project.title}
     >
-      <Card className="h-full group w-[80vw] lg:max-w-[40vw]">
-        <div className="p-4">
-          <div className="overflow-hidden rounded-lg">
-            <Image
-              alt="Image"
-              className="group-hover:scale-105 transition-all"
-              layout="responsive"
-              width={1280}
-              height={832}
-              quality={100}
-              src={project.image}
-              unoptimized
-            />
-          </div>
-        </div>
-        <CardHeader className="pt-0 pb-3">
-          <CardTitle>
-            <div className="flex gap-2 items-center">
-              <Link
-                href={project.github}
-                className="flex items-center justify-center"
-              >
-                {project.title}
-                <SquareArrowOutUpRight className="ml-3 mb-1" size={24} />
-              </Link>
+      <Link
+        href={project.github}
+      >
+        <Atropos className="my-atropos h-full" activeOffset={10} rotateXMax={5} rotateYMax={5}>
+
+          <Card className="group h-full w-[80vw] lg:max-w-[40vw]">
+
+            <div className="p-4">
+              <div className="overflow-hidden rounded-lg">
+
+                <Image
+                  alt="Image"
+                  className="group-hover:scale-105 transition-all"
+                  layout="responsive"
+                  width={1280}
+                  height={832}
+                  quality={100}
+                  src={project.image}
+                  unoptimized
+                />
+
+              </div>
             </div>
-          </CardTitle>
-          <CardDescription>{project.description}</CardDescription>
-        </CardHeader>
-        <CardFooter className="*:mr-2 *:mb-2 flex flex-wrap">
-          {project.tags.map((tag) => (
-            <Badge
-              variant="secondary"
-              className="border-spacing-1 bg-transparent hover:bg-black text-white-100 border border-white"
-              key={tag}
-            >
-              {tag}
-            </Badge>
-          ))}
-        </CardFooter>
-      </Card>
-    </motion.div>
+            <CardHeader className="pt-0 pb-3">
+              <CardTitle>
+                <div className="flex gap-2 items-center">
+
+                  {project.title}
+                  <SquareArrowOutUpRight className="ml-3 mb-1" size={24} />
+                </div>
+              </CardTitle>
+              <CardDescription>{project.description}</CardDescription>
+            </CardHeader>
+            <CardFooter className="*:mr-2 *:mb-2 flex flex-wrap">
+              {project.tags.map((tag) => (
+                <Badge
+                  variant="secondary"
+                  className="border-spacing-1 bg-transparent hover:bg-black text-white-100 border border-white"
+                  key={tag}
+                >
+                  {tag}
+                </Badge>
+              ))}
+            </CardFooter>
+          </Card>
+        </Atropos>
+      </Link>
+
+    </motion.div >
   );
 };
 
