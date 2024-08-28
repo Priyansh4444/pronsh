@@ -39,6 +39,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <meta name="google-site-verification" content="q-RBVfbqO8BeEqQVupN9UX61u8_ATp-bEtEl2embWO4" />
+      </head>
       <body className={inter.className + " selection:bg-slate-300 selection:bg-opacity-20"}>
         {children}
         <Toaster />
