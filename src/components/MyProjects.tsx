@@ -47,18 +47,6 @@ const MyProjects = () => {
   return (
     <section className="mb-52">
       <div className="group relative text-center flex flex-col justify-center align-middle items-center h-full">
-        {isClient && (
-          <video
-            autoPlay
-            loop
-            muted
-            playsInline
-            className="absolute top-0 left-0 w-[100vw] object-cover h-[200vh] z-[-3]"
-          >
-            <source src="https://videos.pexels.com/video-files/2792370/2792370-hd_1920_1080_30fps.mp4" type="video/mp4" />
-            Your browser does not support the video tag.
-          </video>
-        )}
         <div className="glitch animate-pulse text-6xl font-bold">
           My Projects
         </div>
