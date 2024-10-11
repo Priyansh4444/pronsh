@@ -445,7 +445,7 @@ const Icons = () => {
       <Framer>
         <Link
           className="text-sm font-medium text-gray-600 hover:text-gray-50 duration-500"
-          href="https://drive.google.com/file/d/1RyENPIsiNQX1kiuLfzfRbrJYVUVBSmGV/view"
+          href="https://drive.google.com/file/d/11J3aTkJPBDNYovjOM6Xh1vPVxhJxqKLU/view?usp=sharing"
         >
           <ScrollText size={iconSize} />
         </Link>
