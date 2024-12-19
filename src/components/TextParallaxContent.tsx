@@ -1,3 +1,4 @@
+"use client";
 import React, { ReactElement, useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useCallback, useEffect, useState } from "react";
@@ -20,10 +21,12 @@ import Link from "next/link";
 import { useToast } from "@/components/ui/use-toast";
 import { TConductorInstance } from "react-canvas-confetti/dist/types";
 import { MouseEvent } from "react";
-import Lottie from "lottie-react";
-import * as animationData from "@/components/BirdAnimation.json";
+import dynamic from "next/dynamic";
 
-export const TextParallaxContentCollaborate = () => {
+const Lottie = dynamic(() => import("lottie-react"), { ssr: false });
+import animationData from "@/components/BirdAnimation";
+
+const TextParallaxContentCollaborat = () => {
   return (
     <div className="bg-zinc-950 py-10 mt-32">
       <TextParallaxContent
@@ -36,6 +39,10 @@ export const TextParallaxContentCollaborate = () => {
     </div>
   );
 };
+
+export const TextParallaxContentCollaborate = React.memo(
+  TextParallaxContentCollaborat
+);
 
 const IMG_PADDING = 12;
 
@@ -156,7 +163,7 @@ export function Footer() {
   }, []);
 
   const [conductor, setConductor] = useState<undefined | TConductorInstance>(
-    undefined,
+    undefined
   );
 
   useEffect(() => {
@@ -186,7 +193,7 @@ export function Footer() {
   const [success, setSuccess] = useState(false);
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     const { id, value } = e.target;
     setFormData((prevData) => ({
@@ -215,7 +222,7 @@ export function Footer() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const isFormValid = Object.keys(formData).every((key) =>
-      validateInput(key as keyof typeof formData),
+      validateInput(key as keyof typeof formData)
     );
     if (!isFormValid) return;
 
@@ -237,7 +244,7 @@ export function Footer() {
       const response = await emailjs.send(
         serviceID,
         templateID,
-        templateParams,
+        templateParams
       );
       // const response = {
       //   status: 200,
@@ -385,7 +392,8 @@ export function Footer() {
   );
 }
 
-const Icons = () => {
+const Icons = React.memo(() => {
+  Icons.displayName = "Icons";
   const iconSize = 32; // Adjust this value as needed to make the icons bigger
   return (
     <>
@@ -452,7 +460,7 @@ const Icons = () => {
       </Framer>
     </>
   );
-};
+});
 
 function Framer({ children }: { children: React.ReactNode }) {
   const ref = useRef<HTMLDivElement>(null);

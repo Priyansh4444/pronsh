@@ -1,4 +1,4 @@
-import { MouseEvent, useEffect, useState } from "react";
+import { MouseEvent, useEffect, useState, memo } from "react";
 import {
   motion,
   MotionStyle,
@@ -17,10 +17,12 @@ import {
 import Link from "next/link";
 import Image from "next/legacy/image";
 import { Badge } from "./ui/badge";
+import 'atropos/css';
 import { HorizontalScroll } from "./HorizontalScroll";
 import { SquareArrowOutUpRight } from "lucide-react";
 import { Exo } from "next/font/google";
-import Atropos from 'atropos/react';
+import Atropos from "atropos/react";
+
 type WrapperStyle = MotionStyle & {
   "--x": MotionValue<string>;
   "--y": MotionValue<string>;
@@ -40,10 +42,7 @@ const lineVariants = {
 const MyProjects = () => {
   const pathLength = useMotionValue(0);
   const opacity = useTransform(pathLength, [0.05, 0.15], [0, 1]);
-  const [isClient, setIsClient] = useState(false);
-  useEffect(() => {
-    setIsClient(true);
-  }, []);
+
   return (
     <section className="mb-52">
       <div className="group relative text-center flex flex-col justify-center align-middle items-center h-full">
@@ -71,7 +70,6 @@ const MyProjects = () => {
       </div>
 
       <HorizontalScroll>
-
         {projects.map((project) => ProjectCard(project))}
       </HorizontalScroll>
     </section>
@@ -104,7 +102,6 @@ const ProjectCard = (project: Project) => {
     mouseY.set(clientY - top);
   };
   return (
-
     <motion.div
       className={"animated-cards m-2 relative h-full " + ExoFont.className}
       style={
@@ -116,16 +113,16 @@ const ProjectCard = (project: Project) => {
       onMouseMove={handleMouseMove}
       key={project.title}
     >
-      <Link
-        href={project.github}
-      >
-        <Atropos className="my-atropos h-full" activeOffset={10} rotateXMax={5} rotateYMax={5}>
-
-          <Card className="group h-full w-[80vw] lg:max-w-[40vw]" >
-
+      <Link href={project.github}>
+        <Atropos
+          className="my-atropos h-full"
+          activeOffset={10}
+          rotateXMax={5}
+          rotateYMax={5}
+        >
+          <Card className="group h-full w-[80vw] lg:max-w-[40vw]">
             <div className="p-4">
               <div className="overflow-hidden rounded-lg">
-
                 <Image
                   alt="Image"
                   className="group-hover:scale-105 transition-all"
@@ -136,20 +133,26 @@ const ProjectCard = (project: Project) => {
                   src={project.image}
                   unoptimized
                 />
-
               </div>
             </div>
-            <CardHeader className="pt-0 pb-3 atropos-scale" data-atropos-offset="-1" >
+            <CardHeader
+              className="pt-0 pb-3 atropos-scale"
+              data-atropos-offset="-1"
+            >
               <CardTitle>
                 <div className="flex gap-2 items-center">
-
                   {project.title}
                   <SquareArrowOutUpRight className="ml-3 mb-1" size={24} />
                 </div>
               </CardTitle>
-              <CardDescription data-atrops-offset="-2">{project.description}</CardDescription>
+              <CardDescription data-atrops-offset="-2">
+                {project.description}
+              </CardDescription>
             </CardHeader>
-            <CardFooter className="*:mr-2 *:mb-2 flex flex-wrap" data-atrops-offset="-2">
+            <CardFooter
+              className="*:mr-2 *:mb-2 flex flex-wrap"
+              data-atrops-offset="-2"
+            >
               {project.tags.map((tag) => (
                 <Badge
                   variant="secondary"
@@ -163,12 +166,11 @@ const ProjectCard = (project: Project) => {
           </Card>
         </Atropos>
       </Link>
-
-    </motion.div >
+    </motion.div>
   );
 };
 
-export default MyProjects;
+export default memo(MyProjects);
 
 const projects = [
   {

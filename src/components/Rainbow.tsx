@@ -1,6 +1,6 @@
 // components/Rainbow.tsx
 // Component taken from https://vercel.com/blog/building-an-interactive-webgl-experience-in-next-js
-
+"use client"
 import React, { forwardRef, useRef } from "react";
 import { extend, useFrame, useThree } from "@react-three/fiber";
 import { shaderMaterial } from "@react-three/drei";
@@ -143,7 +143,7 @@ interface RainbowProps {
   [key: string]: any;
 }
 
-export const Rainbow = forwardRef<THREE.Mesh, RainbowProps>(
+const Rainbows = forwardRef<THREE.Mesh, RainbowProps>(
   (
     {
       startRadius = 0.15,
@@ -190,4 +190,6 @@ export const Rainbow = forwardRef<THREE.Mesh, RainbowProps>(
   },
 );
 
-Rainbow.displayName = "Rainbow";
+Rainbows.displayName = "Rainbow";
+
+export const Rainbow = React.memo(Rainbows);

@@ -1,85 +1,100 @@
 "use client";
+
 import React, { useCallback, useEffect, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
 
-export const FlipWords = ({
-  words,
-  duration = 3000,
-  className,
-}: {
-  words: string[];
-  duration?: number;
-  className?: string;
-}) => {
-  const [currentWord, setCurrentWord] = useState(words[0]);
-  const [isAnimating, setIsAnimating] = useState<boolean>(false);
+export const FlipWords = React.memo(
+  ({
+    words,
+    duration = 6000,
+    className,
+  }: {
+    words: string[];
+    duration?: number;
+    className?: string;
+  }) => {
+    const [currentWord, setCurrentWord] = useState(words[0]);
+    const [isAnimating, setIsAnimating] = useState(false);
 
-  const startAnimation = useCallback(() => {
-    const word = words[(words.indexOf(currentWord) + 1) % words.length];
-    setCurrentWord(word);
-    setIsAnimating(true);
-  }, [currentWord, words]);
+    const startAnimation = useCallback(() => {
+      setCurrentWord((prev) => words[(words.indexOf(prev) + 1) % words.length]);
+      setIsAnimating(true);
+    }, [words]);
 
-  useEffect(() => {
-    if (!isAnimating) {
-      const timer = setTimeout(() => {
-        startAnimation();
-      }, duration);
-      return () => clearTimeout(timer); // Clean-up timer on unmount
-    }
-  }, [isAnimating, duration, startAnimation]);
+    useEffect(() => {
+      if (!isAnimating) {
+        const timer = setTimeout(startAnimation, duration);
+        return () => clearTimeout(timer);
+      }
+    }, [isAnimating, duration, startAnimation]);
 
-  return (
-    <AnimatePresence
-      onExitComplete={() => {
-        setIsAnimating(false);
-      }}
-    >
-      <motion.div
-        initial={{
-          opacity: 0,
-          y: 10,
-        }}
-        animate={{
-          opacity: 1,
-          y: 0,
-        }}
-        transition={{
-          duration: 0.4,
-          ease: "easeInOut",
+    const containerVariants = {
+      hidden: {},
+      visible: {
+        transition: {
+          staggerChildren: 0.05,
+        },
+      },
+      exit: {
+        transition: {
+          staggerChildren: 0.03,
+          staggerDirection: -1,
+        },
+      },
+    };
+
+    const letterVariants = {
+      hidden: { opacity: 0, y: 20 },
+      visible: {
+        opacity: 1,
+        y: 0,
+        transition: {
           type: "spring",
-          stiffness: 100,
-          damping: 10,
-        }}
-        exit={{
-          opacity: 0,
-          y: -40,
-          filter: "blur(8px)",
-          scale: 0.5,
-          position: "absolute",
-        }}
-        className={cn(
-          "z-10 inline-block relative text-left px-2",
-          className,
-        )}
-        key={currentWord}
-      >
-        {currentWord.split("").map((letter, index) => (
-          <motion.span
-            key={currentWord + index}
-            initial={{ opacity: 0, y: 10, filter: "blur(8px)" }}
-            animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-            transition={{
-              delay: index * 0.08,
-              duration: 0.4,
-            }}
-            className="inline-block mb-2"
+          damping: 12,
+          stiffness: 200,
+        },
+      },
+      exit: {
+        opacity: 0,
+        y: -20,
+        transition: {
+          type: "tween",
+          ease: "easeInOut",
+          duration: 0.2,
+        },
+      },
+    };
+
+    return (
+      <div className="relative overflow-hidden">
+        <AnimatePresence
+          mode="wait"
+          onExitComplete={() => setIsAnimating(false)}
+        >
+          <motion.div
+            key={currentWord}
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+            exit="exit"
+            className={cn("inline-block relative text-left px-2 py-2", className)}
           >
-            {letter === " " ? "\u00A0" : letter}
-          </motion.span>
-        ))}
-      </motion.div>
-    </AnimatePresence>
-  );
-};
+            {currentWord.split("").map((letter, index) => (
+              <motion.span
+                key={`${currentWord}-${index}`}
+                variants={letterVariants}
+                className="inline-block"
+                style={{ display: "inline-block" }}
+              >
+                {letter === " " ? "\u00A0" : letter}
+              </motion.span>
+            ))}
+          </motion.div>
+        </AnimatePresence>
+      </div>
+    );
+  }
+);
+
+FlipWords.displayName = "FlipWords";

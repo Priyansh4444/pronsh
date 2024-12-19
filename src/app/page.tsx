@@ -1,7 +1,7 @@
 "use client";
 import React, { Suspense, useEffect, useRef } from "react";
 import dynamic from "next/dynamic";
-import AboutMe from "@/components/AboutMe";
+import MemoizedAboutMe from "@/components/AboutMe";
 import MyProjects from "@/components/MyProjects";
 import { TextParallaxContentCollaborate } from "@/components/TextParallaxContent";
 import Navbar from "@/components/Navbar";
@@ -10,9 +10,7 @@ import { Inter } from "next/font/google";
 import { FlipWords } from "@/components/ui/flip-words";
 import Intro from "@/components/Preloader";
 import { AnimatePresence } from "framer-motion";
-import StickyScroll from "@/components/VerticalScroll";
-import LocomotiveScroll from "locomotive-scroll";
-
+import Lenis from "lenis";
 const inter = Inter({
   subsets: ["latin"],
   style: ["normal"],
@@ -30,22 +28,28 @@ const words = [
 const Scene = dynamic(() => import("@/components/Scene"), {
   ssr: false,
 });
+
 const blurStyle = {
   backdropFilter: "blur(30px)", // Blur effect for the glass-like effect
   WebkitBackdropFilter: "blur(20px)", // For Safari browser support
 };
 
 export default function Home() {
+  "use client";
   const scrollRef = useRef(null);
   const [isRainbow, setIsRainbow] = React.useState(false);
   const [loading, setLoading] = React.useState(true);
 
   useEffect(() => {
-    const locoScroll = new LocomotiveScroll({});
+    const lenis = new Lenis();
 
-    return () => {
-      if (locoScroll) locoScroll.destroy();
-    };
+    function raf(time: number) {
+      lenis.raf(time);
+
+      requestAnimationFrame(raf);
+    }
+
+    requestAnimationFrame(raf);
   }, []);
 
   useEffect(() => {
@@ -90,13 +94,13 @@ export default function Home() {
               Available for work!
             </span>
           </Badge>
-          <h1 className="max-w-7xl text-4xl font-bold md:text-5xl lg:text-6xl">
+          <h1 className="max-w-7xl text-4xl font-bold md:text-5xl lg:text-6xl leading-relaxed">
             Hi I&apos;m a developer interested in <br />{" "}
             <FlipWords
               className="text-transparent bg-clip-text bg-gradient-to-r from-rose-700 to-pink-600"
               words={words}
             ></FlipWords>{" "}
-            <br /> converting problems into solutions.
+            converting problems into solutions.
           </h1>
           <p className="mt-5 max-w-prose text-muted-foreground sm:text-lg">
             Who has an obsession with latest tech, projects and surprisingly
@@ -109,7 +113,7 @@ export default function Home() {
         <MyProjects />
       </div>
       <div className="flex-1 w-full container mx-auto">
-        <AboutMe />
+        <MemoizedAboutMe />
       </div>
 
       <TextParallaxContentCollaborate />

@@ -12,7 +12,13 @@ const navbarStyle = {
   borderBottom: "1px solid rgba(255, 255, 255, 0.03)", // Slight border for glossy effect
 };
 
-export default function Navbar({ isRainbow, setRainbow }: { isRainbow: boolean; setRainbow: React.Dispatch<React.SetStateAction<boolean>> }) {
+export default function Navbar({
+  isRainbow,
+  setRainbow,
+}: {
+  isRainbow: boolean;
+  setRainbow: React.Dispatch<React.SetStateAction<boolean>>;
+}) {
   const { ref, replay } = useScramble({
     text: "Pronsh",
     speed: 1,

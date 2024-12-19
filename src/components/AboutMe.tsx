@@ -2,6 +2,8 @@ import { cn } from "@/lib/utils";
 import { Zap } from "lucide-react";
 import Image from "next/legacy/image";
 import React from "react";
+import { useMemo } from "react";
+
 const AboutMe = () => {
   const getImageName = (path: string) => {
     const parts = path.split("/");
@@ -9,24 +11,29 @@ const AboutMe = () => {
     const nameWithoutExtension = filename.split(".")[0];
     return nameWithoutExtension;
   };
-  const images = [
-    "/svgs/next.svg",
-    "/svgs/rust.svg",
-    "/svgs/python.svg",
-    "/svgs/typescript.svg",
-    "/svgs/github.svg",
-    "/svgs/vercel.svg",
-    "/svgs/react.svg",
-    "/svgs/trpc.svg",
-    "/svgs/firebase.svg",
-    "/svgs/flutter.svg",
-    "/svgs/dart.svg",
-    "/svgs/WebGL.svg",
-    "/svgs/pytorch.svg",
-    "/svgs/postgresql.svg",
-    "/svgs/tensorflow.svg",
-    "/svgs/drizzle.png",
-  ];
+
+  const images = useMemo(
+    () => [
+      "/svgs/next.svg",
+      "/svgs/rust.svg",
+      "/svgs/python.svg",
+      "/svgs/typescript.svg",
+      "/svgs/github.svg",
+      "/svgs/vercel.svg",
+      "/svgs/react.svg",
+      "/svgs/trpc.svg",
+      "/svgs/firebase.svg",
+      "/svgs/flutter.svg",
+      "/svgs/dart.svg",
+      "/svgs/WebGL.svg",
+      "/svgs/pytorch.svg",
+      "/svgs/postgresql.svg",
+      "/svgs/tensorflow.svg",
+      "/svgs/drizzle.png",
+    ],
+    []
+  );
+
   return (
     <section className="bg-background relative py-12 md:py-20">
       <Container>
@@ -97,18 +104,16 @@ export function Marquee({
   children,
   vertical = false,
   repeat = 4,
-  ...props
 }: MarqueeProps) {
   return (
     <div
-      {...props}
       className={cn(
         "group flex overflow-hidden p-2 [--duration:40s] [--gap:1rem] [gap:var(--gap)]",
         {
           "flex-row": !vertical,
           "flex-col": vertical,
         },
-        className,
+        className
       )}
     >
       {Array(repeat)
@@ -146,7 +151,7 @@ function RetroGrid({ className }: { className?: string }) {
     <div
       className={cn(
         "pointer-events-none   overflow-hidden absolute h-full w-full opacity-50 [perspective:200px]",
-        className,
+        className
       )}
     >
       {/* Grid */}
@@ -155,7 +160,7 @@ function RetroGrid({ className }: { className?: string }) {
           className={cn(
             "animate-grid",
             "[background-repeat:repeat] [background-size:60px_60px] [height:300vh] [inset:0%_0px] [margin-left:-50%] [transform-origin:100%_0_0] [width:600vw]",
-            "[background-image:linear-gradient(to_right,rgba(255,255,255,0.2)_1px,transparent_0),linear-gradient(to_bottom,rgba(255,255,255,0.2)_1px,transparent_0)]",
+            "[background-image:linear-gradient(to_right,rgba(255,255,255,0.2)_1px,transparent_0),linear-gradient(to_bottom,rgba(255,255,255,0.2)_1px,transparent_0)]"
           )}
         />
       </div>
@@ -187,5 +192,6 @@ const Ellipses = () => {
     </div>
   );
 };
+const MemoizedAboutMe = React.memo(AboutMe);
 
-export default AboutMe;
+export default MemoizedAboutMe;
